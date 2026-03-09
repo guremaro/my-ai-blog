@@ -25,6 +25,7 @@ export default function RootLayout({
             </div>
             <nav className="hidden lg:flex gap-8 text-[15px] font-bold text-slate-900 uppercase tracking-wide">
               <a href="/" className="hover:text-orange-600 transition-colors">ホーム</a>
+              <a href="/about" className="hover:text-orange-600 transition-colors">About</a>
               <a href="/category/it" className="hover:text-orange-600 transition-colors">IT・ニュース</a>
               <a href="/category/gadget" className="hover:text-orange-600 transition-colors">ガジェット</a>
               <a href="/category/game" className="hover:text-orange-600 transition-colors">ゲーム</a>
