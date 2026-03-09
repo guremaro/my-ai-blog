@@ -33,28 +33,48 @@ export default function RootLayout({
       <body className={`${inter.className} bg-slate-900 text-slate-900 min-h-screen flex flex-col`}>
         {/* Left Side Ad Space */}
         <div className="fixed left-0 top-0 hidden xl:flex h-screen w-[calc((100vw-1280px)/2)] flex-col items-center justify-center p-4 overflow-hidden">
-          <div className="w-full max-w-[160px] aspect-[1/4] bg-slate-800/50 rounded-lg border border-slate-700 flex flex-col items-center justify-between p-4 text-slate-500 uppercase tracking-widest text-[10px] font-bold">
-            <span>A D V EＲT I S E M E N T</span>
-            <div className="w-full flex flex-col gap-4">
-               {/* Placeholder for vertical ad */}
-               <div className="w-full aspect-[1/2] bg-slate-700/30 rounded flex items-center justify-center text-center px-2">トピックに関連した<br/>お得な情報</div>
-               <div className="w-full aspect-[1/2] bg-slate-700/30 rounded flex items-center justify-center text-center px-2">今すぐ<br/>チェック！</div>
+          <a href="https://px.a8.net/svt/ejp?a8mat=4AZCG1+893BN6+2J9U+C0B9T" target="_blank" rel="noopener noreferrer" 
+             className="w-full max-w-[160px] aspect-[1/4] bg-slate-800/80 rounded-2xl border border-slate-700 flex flex-col items-center justify-between p-4 text-slate-400 hover:border-orange-500 transition-all duration-500 group">
+            <span className="uppercase tracking-[0.3em] text-[9px] font-black opacity-50">Advertisement</span>
+            <div className="w-full flex flex-col gap-6">
+               <div className="relative w-full aspect-[1/1.5] rounded-xl overflow-hidden shadow-2xl">
+                 <img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=300&auto=format&fit=crop" 
+                      alt="Tech Gadget" className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-700" />
+                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                 <div className="absolute bottom-2 left-2 right-2 text-[10px] font-black text-white leading-tight">
+                   驚異の性能。<br/>次世代AIツール
+                 </div>
+               </div>
+               <div className="text-center">
+                 <p className="text-[11px] font-black text-white mb-2 tracking-tight group-hover:text-orange-400">プロ級の仕上がりを、<br/>あなたの手に。</p>
+                 <div className="inline-block px-3 py-1 bg-orange-500 text-white text-[9px] font-black rounded-full uppercase">Get it now</div>
+               </div>
             </div>
-            <span>S P O N S O R E D</span>
-          </div>
+            <span className="text-[9px] font-bold opacity-30">Sponsored Content</span>
+          </a>
         </div>
 
         {/* Right Side Ad Space */}
         <div className="fixed right-0 top-0 hidden xl:flex h-screen w-[calc((100vw-1280px)/2)] flex-col items-center justify-center p-4 overflow-hidden">
-          <div className="w-full max-w-[160px] aspect-[1/4] bg-slate-800/50 rounded-lg border border-slate-700 flex flex-col items-center justify-between p-4 text-slate-500 uppercase tracking-widest text-[10px] font-bold">
-            <span>A D V EＲT I S E M E N T</span>
-            <div className="w-full flex flex-col gap-4">
-               {/* Placeholder for vertical ad */}
-               <div className="w-full aspect-[1/2] bg-slate-700/30 rounded flex items-center justify-center text-center px-2">限定セール<br/>実施中</div>
-               <div className="w-full aspect-[1/2] bg-slate-700/30 rounded flex items-center justify-center text-center px-2">メルカリで<br/>探す</div>
+          <a href="https://px.a8.net/svt/ejp?a8mat=4AZCG1+89OR8Y+5LNQ+5YJRM" target="_blank" rel="noopener noreferrer"
+             className="w-full max-w-[160px] aspect-[1/4] bg-slate-800/80 rounded-2xl border border-slate-700 flex flex-col items-center justify-between p-4 text-slate-400 hover:border-orange-500 transition-all duration-500 group">
+            <span className="uppercase tracking-[0.3em] text-[9px] font-black opacity-50">Recommended</span>
+            <div className="w-full flex flex-col gap-6">
+               <div className="relative w-full aspect-[1/1.5] rounded-xl overflow-hidden shadow-2xl">
+                 <img src="https://images.unsplash.com/photo-1542435503-956c469947f6?q=80&w=300&auto=format&fit=crop" 
+                      alt="Lifestyle" className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-700" />
+                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                 <div className="absolute bottom-2 left-2 right-2 text-[10px] font-black text-white leading-tight">
+                   毎日の生活を<br/>もっと豊かに
+                 </div>
+               </div>
+               <div className="text-center">
+                 <p className="text-[11px] font-black text-white mb-2 tracking-tight group-hover:text-orange-400">メルカリで今すぐ<br/>掘り出し物を探す</p>
+                 <div className="inline-block px-3 py-1 bg-white text-slate-900 text-[9px] font-black rounded-full uppercase group-hover:bg-orange-500 group-hover:text-white transition-colors">Search On Mercari</div>
+               </div>
             </div>
-            <span>S P O N S O R E D</span>
-          </div>
+            <span className="text-[9px] font-bold opacity-30">Affiliate Offer</span>
+          </a>
         </div>
 
         <div className="relative z-10 mx-auto w-full max-w-[1280px] bg-white shadow-[0_0_50px_rgba(0,0,0,0.3)] flex-grow">
