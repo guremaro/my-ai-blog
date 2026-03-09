@@ -3,10 +3,9 @@ const parser = new RSSParser();
 
 // 取得対象のテック・エンタメ系RSSフィード
 const FEEDS = [
-    'https://rss.itmedia.co.jp/rss/2.0/aiplus.xml', // ITmedia AI+
     'https://www.gizmodo.jp/index.xml',
-    'https://www.famitsu.com/rss/all.xml', // ファミ通 (ゲーム)
-    'https://www.oricon.co.jp/rss/news/', // オリコン (エンタメ)
+    'https://www.famitsu.com/rss/all.xml',
+    'https://www.oricon.co.jp/rss/news/',
 ];
 
 async function fetchLatestNews() {
@@ -15,16 +14,16 @@ async function fetchLatestNews() {
 
     for (const url of FEEDS) {
         try {
+            console.log(`フェード取得試行: ${url}`);
             const feed = await parser.parseURL(url);
-            console.log(`取得成功: ${feed.title}`);
+            console.log(`取得成功: ${feed.title} (${feed.items?.length || 0}件)`);
             
-            // 最新の3記事のみ抽出
-            const items = feed.items.slice(0, 3).map(item => ({
+            const items = (feed.items || []).slice(0, 15).map(item => ({
                 title: item.title,
                 link: item.link,
-                contentSnippet: item.contentSnippet,
+                contentSnippet: item.contentSnippet || item.title || "",
                 pubDate: item.pubDate,
-                source: feed.title
+                source: feed.title || "不明なソース"
             }));
             
             allItems = allItems.concat(items);
@@ -33,14 +32,11 @@ async function fetchLatestNews() {
         }
     }
 
-    // AIに関連するキーワードでフィルタリング（任意）
-    const aiKeywords = ['AI', '人工知能', 'ChatGPT', 'Gemini', 'Claude', '自動化', '生成AI'];
-    const filteredNews = allItems.filter(item => 
-        aiKeywords.some(keyword => item.title.includes(keyword) || (item.contentSnippet && item.contentSnippet.includes(keyword)))
-    );
-
-    console.log(`合計 ${filteredNews.length} 件のAI関連ニュースを抽出しました。`);
-    return filteredNews;
+    // 重複削除 (タイトルベース)
+    const uniqueNews = Array.from(new Map(allItems.map(item => [item.title, item])).values());
+    
+    console.log(`合計 ${uniqueNews.length} 件のニュースを抽出しました。`);
+    return uniqueNews;
 }
 
 if (require.main === module) {

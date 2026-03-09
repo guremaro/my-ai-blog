@@ -1,4 +1,4 @@
-const axios = require('axios');
+const { GoogleGenerativeAI } = require("@google/generative-ai");
 const path = require('path');
 require('dotenv').config();
 
@@ -9,11 +9,11 @@ async function createArticleMarkdown(newsItem) {
         return null;
     }
 
-    // 利用可能なモデルの中から安定していそうなものを選択
-    const modelName = "gemini-1.5-flash"; 
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${apiKey}`;
+    try {
+        const genAI = new GoogleGenerativeAI(apiKey);
+        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-latest" });
 
-    const affiliateInfo = `
+        const affiliateInfo = `
     【おすすめ案件リスト】
     1. 注目案件: https://px.a8.net/svt/ejp?a8mat=4AZCG1+893BN6+2J9U+C0B9T
     2. メルカリ: https://px.a8.net/svt/ejp?a8mat=4AZCG1+89OR8Y+5LNQ+5YJRM
@@ -21,7 +21,7 @@ async function createArticleMarkdown(newsItem) {
     4. ガジェット系B: https://px.a8.net/svt/ejp?a8mat=4AZCG1+59XAR6+14CS+64RJ5
     `;
 
-    const promptText = `
+        const promptText = `
 以下のニュース情報を元に、読者が楽しめるブログ記事を日本語で執筆してください。
 サイト名は「みんなの情報収集」です。
 
@@ -42,37 +42,29 @@ async function createArticleMarkdown(newsItem) {
 ${affiliateInfo}
 
 5. Markdown形式で出力し、以下のFrontmatterを必ず含めてください。
-   ---
-   title: "【${newsItem.source}】${newsItem.title}"
-   date: "${new Date().toISOString().split('T')[0]}"
-   excerpt: "ネットで話題：${newsItem.title}について語るスレ"
-   category: "IT・ニュース"
-   ---
-   ※カテゴリは「IT・ニュース」「ガジェット」「ゲーム」「エンタメ」の中から最適なものを選んでください。
-6. 全体的に読み物として面白いトーンにしてください。
-`;
+---
+title: "【${newsItem.source}】${newsItem.title}"
+date: "${new Date().toISOString().split('T')[0]}"
+excerpt: "ネットで話題：${newsItem.title}について語るスレ"
+category: "IT・ニュース"
+image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?q=80&w=800&auto=format&fit=crop"
+---
+※カテゴリは「IT・ニュース」「ガジェット」「ゲーム」「エンタメ」の中から最適なものを選んでください。
+※imageには、Unsplashの高品質で内容に関連する画像のURL（実在する形式）を一つ設定してください。
+6. 全体的に読み物として面白いトーンにしてください。`;
 
-    const data = {
-        contents: [{
-            parts: [{ text: promptText }]
-        }]
-    };
-
-    try {
-        console.log(`AIリクエスト送信中 (${modelName})...`);
-        const response = await axios.post(url, data, {
-            headers: { 'Content-Type': 'application/json' }
-        });
+        console.log(`AIリクエスト送信中 (Gemini SDK)...`);
+        const result = await model.generateContent(promptText);
+        const text = result.response.text();
         
-        if (response.data?.candidates?.[0]?.content?.parts?.[0]?.text) {
-            return response.data.candidates[0].content.parts[0].text;
+        if (text) {
+            return text;
         } else {
-            console.error("AIからの空のレスポンス:", JSON.stringify(response.data));
+            console.log("AIからのレスポンスが空です。");
             return null;
         }
     } catch (error) {
-        const errorData = error.response ? error.response.data : error.message;
-        console.error("記事生成エラー:", JSON.stringify(errorData));
+        console.error("SDK呼び出しエラー:", error.message);
         return null;
     }
 }

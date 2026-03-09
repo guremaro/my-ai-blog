@@ -55,6 +55,20 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
             href={`/posts/${post.slug}`}
             className="group block bg-white rounded-3xl overflow-hidden border-2 border-slate-100 hover:border-orange-500 transition-all duration-500 hover:shadow-[0_20px_50px_rgba(249,115,22,0.1)]"
           >
+            <div className="aspect-[16/10] overflow-hidden bg-slate-100 relative">
+              {post.image ? (
+                <img 
+                  src={post.image} 
+                  alt={post.title} 
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center text-slate-200 font-black text-xl uppercase italic">
+                  {post.category}
+                </div>
+              )}
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            </div>
             <div className="p-8">
               <div className="flex items-center gap-3 mb-6">
                 <span className="px-3 py-1 bg-slate-100 text-slate-600 text-[10px] font-black uppercase tracking-widest rounded-full group-hover:bg-orange-500 group-hover:text-white transition-colors">

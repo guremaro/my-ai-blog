@@ -2,7 +2,8 @@
 title: "【速報】Apple Vision Pro、ついに日本発売決定！？「これ1台で世界が変わるわ」「高いけど欲しい」ネットの反応まとめ"
 date: "2026-03-09"
 excerpt: "Appleの空間コンピュータ『Vision Pro』の日本展開が話題に。60万円超えの価格設定に震えるネット民たちの反応をまとめました。"
-category: "IT・ニュース"
+category: "ゲーム"
+image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=800&auto=format&fit=crop"
 ---
 
 Appleがついに空間コンピュータ「Apple Vision Pro」の日本国内発売についての新情報を解禁しました。

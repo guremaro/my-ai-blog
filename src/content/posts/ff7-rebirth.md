@@ -3,6 +3,7 @@ title: "【FF7リバース】ついに発売！「ストーリーが衝撃すぎ
 date: "2026-03-09"
 excerpt: "待望の第二弾『ファイナルファンタジーVII リバース』。広大なワールドマップと深まる物語に圧倒されるプレイヤーたちの声。"
 category: "ゲーム"
+image: "https://images.unsplash.com/photo-1592155931584-901ac15763e3?q=80&w=800&auto=format&fit=crop"
 ---
 
 FF7リメイクプロジェクトの第2弾『FFVII リバース』が、ついにリリースされました。

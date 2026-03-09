@@ -28,11 +28,19 @@ export default function HomePage() {
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
           {posts.map((post) => (
             <article key={post.slug} className="group flex flex-col">
-              <Link href={`/posts/${post.slug}`} className="block overflow-hidden rounded-[2rem] bg-slate-50 aspect-[16/10] mb-8 shadow-inner border border-slate-200 group-hover:border-orange-500 transition-colors">
-                {/* プレースホルダーをよりスタイリッシュに */}
-                <div className="w-full h-full flex items-center justify-center text-slate-200 font-black text-3xl bg-white uppercase tracking-tighter italic">
-                  {post.category}
-                </div>
+              <Link href={`/posts/${post.slug}`} className="block overflow-hidden rounded-[2rem] bg-slate-100 aspect-[16/10] mb-8 shadow-2xl group-hover:shadow-orange-500/20 transition-all duration-500 relative">
+                {post.image ? (
+                  <img 
+                    src={post.image} 
+                    alt={post.title} 
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center text-slate-200 font-black text-3xl bg-white uppercase tracking-tighter italic">
+                    {post.category}
+                  </div>
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
               </Link>
               <div className="flex items-center gap-4 mb-4">
                 <span className="px-3 py-1 rounded-lg bg-slate-900 text-white text-[10px] font-black uppercase tracking-widest">

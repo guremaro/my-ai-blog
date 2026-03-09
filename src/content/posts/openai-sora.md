@@ -2,7 +2,8 @@
 title: "【衝撃】OpenAIの動画生成AI『Sora』が凄すぎて「映画業界終了のお知らせ」「本物と区別がつかない」と話題に"
 date: "2026-03-09"
 excerpt: "プロンプトを入力するだけで映画品質の動画が作れるOpenAIの『Sora』。技術の進化に驚愕するネットの反応をまとめました。"
-category: "IT・ニュース"
+category: "ゲーム"
+image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=800&auto=format&fit=crop"
 ---
 
 OpenAIが発表した動画生成AI「Sora」が、世界中に衝撃を与えています。

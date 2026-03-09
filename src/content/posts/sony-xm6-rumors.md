@@ -3,6 +3,7 @@ title: "【Sony WH-1000XM6】次世代ノイキャン王者の噂！「これ以
 date: "2026-03-09"
 excerpt: "ノイズキャンセリングヘッドフォンの頂点、Sonyの1000Xシリーズ。最新モデルXM6への期待とファンの願望。"
 category: "ガジェット"
+image: "https://images.unsplash.com/photo-1546435770-a3e426bf472b?q=80&w=800&auto=format&fit=crop"
 ---
 
 Sonyが誇る最高峰のワイヤレスノイズキャンセリングヘッドフォン『WH-1000X』シリーズ。
