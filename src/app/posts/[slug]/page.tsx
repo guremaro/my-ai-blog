@@ -1,5 +1,7 @@
+```javascript
 import { notFound } from 'next/navigation';
 import { getPostBySlug, getAllPosts } from '@/lib/posts';
+import { AdSlot } from "@/components/AdSlot";
 
 export async function generateStaticParams() {
   const posts = getAllPosts();
@@ -30,6 +32,8 @@ export default function PostPage({ params }: { params: { slug: string } }) {
         <p className="text-xl text-slate-900 font-bold leading-relaxed border-l-8 border-orange-500 pl-6 py-2">
           {post.excerpt}
         </p>
+
+        <AdSlot position="postTop" />
       </header>
 
       <div className="space-y-4">
@@ -66,6 +70,8 @@ export default function PostPage({ params }: { params: { slug: string } }) {
           return <p key={i} className="text-slate-900 text-lg font-bold leading-[1.8] mb-8">{line}</p>;
         })}
       </div>
+
+      <AdSlot position="postBottom" />
 
       <footer className="mt-32 pt-16 border-t-8 border-slate-100">
         <div className="bg-slate-900 p-12 rounded-[3rem] text-white">
