@@ -3,7 +3,7 @@ title: "【iPhone 16】噂の新機能に期待！「カメラ制御ボタン？
 date: "2026-03-09"
 excerpt: "毎年恒例、新型iPhoneへの期待が膨らむ季節。新たに噂されるキャプチャボタンやAI機能についてのネットの声。"
 category: "ガジェット"
-image: "https://images.unsplash.com/photo-1695653422718-99dff7836761?q=80&w=800&auto=format&fit=crop"
+image: "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?q=80&w=800&auto=format&fit=crop"
 ---
 
 Appleの次世代モデル『iPhone 16』に関する情報が徐々に明らかになってきました。

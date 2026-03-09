@@ -28,7 +28,7 @@ export default function HomePage() {
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
           {posts.map((post) => (
             <article key={post.slug} className="group flex flex-col">
-              <Link href={`/posts/${post.slug}`} className="block overflow-hidden rounded-[2rem] bg-slate-100 aspect-[16/10] mb-8 shadow-2xl group-hover:shadow-orange-500/20 transition-all duration-500 relative">
+              <Link href={`/posts/${post.slug}`} className="block overflow-hidden rounded-2xl bg-slate-100 aspect-[16/10] mb-8 shadow-lg group-hover:shadow-xl transition-all duration-500 relative">
                 {post.image ? (
                   <img 
                     src={post.image} 

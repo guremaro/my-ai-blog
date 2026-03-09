@@ -26,7 +26,7 @@ export default function RelatedPosts({ currentSlug, category }: RelatedPostsProp
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {related.map((post) => (
           <Link key={post.slug} href={`/posts/${post.slug}`} className="group block">
-            <div className="relative aspect-video rounded-2xl overflow-hidden mb-4 border-4 border-slate-900 shadow-lg group-hover:shadow-2xl transition-all group-hover:-translate-y-1">
+            <div className="relative aspect-video rounded-xl overflow-hidden mb-4 border-2 border-slate-100 shadow-md group-hover:shadow-lg transition-all group-hover:-translate-y-1">
               <img 
                 src={post.image || `https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?q=80&w=400&auto=format&fit=crop`} 
                 alt={post.title}

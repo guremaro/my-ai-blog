@@ -41,7 +41,7 @@ export default function RootLayout({
           `}
         </Script>
       </head>
-      <body className={`${inter.className} bg-slate-900 text-slate-900 min-h-screen flex flex-col`}>
+      <body className={`${inter.className} bg-slate-50 text-slate-900 min-h-screen flex flex-col`}>
         {/* Left Side Ad Space */}
         <div className="fixed left-0 top-0 hidden xl:flex h-screen w-[calc((100vw-1280px)/2)] flex-col items-center justify-center p-4 overflow-hidden">
           <a href="https://px.a8.net/svt/ejp?a8mat=4AZCG1+893BN6+2J9U+C0B9T" target="_blank" rel="noopener noreferrer" 
@@ -72,7 +72,7 @@ export default function RootLayout({
           </div>
         </div>
 
-        <div className="relative z-10 mx-auto w-full max-w-[1280px] bg-white shadow-[0_0_50px_rgba(0,0,0,0.3)] flex-grow">
+        <div className="relative z-10 mx-auto w-full max-w-[1280px] bg-white shadow-xl flex-grow">
           <header className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/95 backdrop-blur-sm">
             <div className="container mx-auto flex h-20 items-center justify-between px-6">
               <div className="flex items-center gap-3">
@@ -81,13 +81,13 @@ export default function RootLayout({
                   <span className="text-2xl font-black tracking-tighter text-slate-900 leading-none">みんなの情報収集</span>
                 </a>
               </div>
-              <nav className="hidden lg:flex items-center gap-8 text-[15px] font-bold text-slate-900 uppercase tracking-wide">
-                <a href="/" className="hover:text-orange-600 transition-colors">ホーム</a>
-                <a href="/category/it" className="hover:text-orange-600 transition-colors">IT・ニュース</a>
-                <a href="/category/gadget" className="hover:text-orange-600 transition-colors">ガジェット</a>
-                <a href="/category/game" className="hover:text-orange-600 transition-colors">ゲーム</a>
-                <a href="/category/ent" className="hover:text-orange-600 transition-colors">エンタメ</a>
-                <div className="ml-4 pl-8 border-l border-slate-200">
+              <nav className="flex items-center gap-4 sm:gap-8 text-[13px] sm:text-[15px] font-bold text-slate-900 uppercase tracking-wide overflow-x-auto no-scrollbar">
+                <a href="/" className="hover:text-orange-600 transition-colors whitespace-nowrap">ホーム</a>
+                <a href="/category/it" className="hover:text-orange-600 transition-colors whitespace-nowrap">IT・ニュース</a>
+                <a href="/category/gadget" className="hover:text-orange-600 transition-colors whitespace-nowrap">ガジェット</a>
+                <a href="/category/game" className="hover:text-orange-600 transition-colors whitespace-nowrap">ゲーム</a>
+                <a href="/category/ent" className="hover:text-orange-600 transition-colors whitespace-nowrap">エンタメ</a>
+                <div className="hidden sm:block ml-4 pl-8 border-l border-slate-200">
                   <SearchBar />
                 </div>
               </nav>

@@ -51,7 +51,7 @@ export default function CommentSection() {
   };
 
   return (
-    <div className="mt-20 pt-16 border-t-4 border-slate-900">
+    <div className="mt-20 pt-16 border-t border-slate-200">
       <div className="flex items-center gap-4 mb-12">
         <h2 className="text-4xl font-black text-slate-900 tracking-tighter uppercase italic">Comments</h2>
         <span className="bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-black">
@@ -64,7 +64,7 @@ export default function CommentSection() {
           value={newComment}
           onChange={(e) => setNewComment(e.target.value)}
           placeholder="コメントを入力してみるにゃ...🐾"
-          className="w-full p-6 bg-slate-50 border-4 border-slate-900 rounded-3xl text-slate-900 font-bold placeholder:text-slate-300 focus:outline-none focus:border-orange-500 transition-colors min-h-[120px]"
+          className="w-full p-6 bg-slate-50 border-2 border-slate-200 rounded-3xl text-slate-900 font-bold placeholder:text-slate-300 focus:outline-none focus:border-orange-500 transition-colors min-h-[120px]"
         />
         <div className="mt-4 flex justify-end">
           <button
@@ -80,7 +80,7 @@ export default function CommentSection() {
         {comments.map((comment) => (
           <div key={comment.id} className="flex gap-6 group">
             <div className="flex-shrink-0">
-              <img src={comment.avatar} alt={comment.user} className="w-14 h-14 rounded-full border-4 border-slate-100 group-hover:border-orange-500 transition-colors" />
+              <img src={comment.avatar} alt={comment.user} className="w-14 h-14 rounded-full border-2 border-slate-100 group-hover:border-orange-500 transition-colors" />
             </div>
             <div className="flex-grow">
               <div className="flex items-center gap-3 mb-2">

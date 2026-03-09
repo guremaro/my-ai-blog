@@ -11,7 +11,7 @@ export default function PopularPosts() {
   }));
 
   return (
-    <div className="bg-slate-900 text-white rounded-[2rem] p-8 border border-slate-800 shadow-2xl">
+    <div className="bg-slate-900 text-white rounded-3xl p-8 border border-slate-800 shadow-xl">
       <div className="flex items-center gap-3 mb-8">
         <div className="w-2 h-8 bg-orange-600 rounded-full"></div>
         <h2 className="text-xl font-black uppercase tracking-tighter">アクセスランキング</h2>
