@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,6 +17,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
+      <head>
+        <Script
+          src="//statics.a8.net/a8link/a8linkmgr.js"
+          strategy="beforeInteractive"
+        />
+        <Script id="a8-init">
+          {`
+            a8linkmgr({
+              "config_id": "2WnlLV4R9CD0I2MRD2oG"
+            });
+          `}
+        </Script>
+      </head>
       <body className={`${inter.className} bg-white text-slate-900`}>
         <header className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/95 backdrop-blur-sm">
           <div className="container mx-auto flex h-20 items-center justify-between px-6">
