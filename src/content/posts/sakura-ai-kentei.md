@@ -3,6 +3,7 @@ title: "【さくらインターネット】「さくらのAI検定」を創設 
 date: "2026-03-09"
 excerpt: "さくらインターネットがAI検定を開始！無料で学べる時代が来たか…？ネットの反応をまとめました。"
 category: "IT・ニュース"
+image: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=800&auto=format&fit=crop"
 ---
 
 さくらインターネットが、AIの基礎知識を測定する「さくらのAI検定」を新設したことが話題となっています。

@@ -73,6 +73,22 @@ export default function RootLayout({
         </div>
 
         <div className="relative z-10 mx-auto w-full max-w-[1280px] bg-white shadow-xl flex-grow">
+          {/* Mobile Bottom Sticky Ad */}
+          <div className="xl:hidden fixed bottom-0 left-0 right-0 z-[60] p-2 bg-white/80 backdrop-blur-md border-t border-slate-200">
+            <a href="https://px.a8.net/svt/ejp?a8mat=4AZCG1+893BN6+2J9U+C0B9T" target="_blank" rel="noopener noreferrer"
+               className="flex items-center gap-3 bg-slate-900 text-white p-3 rounded-2xl shadow-xl">
+              <div className="w-12 h-12 rounded-xl overflow-hidden flex-shrink-0">
+                <img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=100&auto=format&fit=crop" alt="AD" className="w-full h-full object-cover" />
+              </div>
+              <div className="flex-grow min-w-0">
+                <p className="text-[10px] font-black text-orange-500 uppercase tracking-widest leading-none mb-1">Recommended</p>
+                <p className="text-sm font-bold truncate">驚異の性能。次世代AIツールをチェック</p>
+              </div>
+              <div className="bg-orange-500 text-white px-4 py-2 rounded-xl text-xs font-black whitespace-nowrap">
+                Check
+              </div>
+            </a>
+          </div>
           <header className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/95 backdrop-blur-sm">
             <div className="container mx-auto flex h-20 items-center justify-between px-6">
               <div className="flex items-center gap-3">

@@ -3,6 +3,7 @@ title: "【新設】「みんなの情報収集」へようこそ！今日から
 date: "2026-03-09"
 excerpt: "ネットで話題：新ブログ「みんなの情報収集」について語るスレ"
 category: "IT・ニュース"
+image: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=800&auto=format&fit=crop"
 ---
 
 ## ニュース概要
