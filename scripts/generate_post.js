@@ -58,6 +58,18 @@ async function main() {
             if (savedPath) {
                 console.log(`保存完了: ${savedPath}`);
                 generatedCount++;
+
+                // X(Twitter) へ投稿
+                const { postToX } = require('./x_poster');
+                const titleMatch = markdown.match(/title: "(.*)"/);
+                const hashtagMatch = markdown.match(/hashtags: "(.*)"/);
+                const title = titleMatch ? titleMatch[1] : "新着記事";
+                const hashtags = hashtagMatch ? hashtagMatch[1] : "#トレンド #ニュース";
+                
+                // slugは保存時のロジックに合わせる
+                const slug = path.basename(savedPath, '.md');
+
+                await postToX({ title, slug, hashtags });
             }
 
             // API制限回避のためのディレイ (2秒)

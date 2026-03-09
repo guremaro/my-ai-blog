@@ -46,11 +46,13 @@ ${affiliateInfo}
 title: "【${newsItem.source}】${newsItem.title}"
 date: "${new Date().toISOString().split('T')[0]}"
 excerpt: "ネットで話題：${newsItem.title}について語るスレ"
-category: "IT・ニュース"
-image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?q=80&w=800&auto=format&fit=crop"
----
-※カテゴリは「IT・ニュース」「ガジェット」「ゲーム」「エンタメ」の中から最適なものを選んでください。
-※imageには、Unsplashの高品質で内容に関連する画像のURL（実在する形式）を一つ設定してください。
+  category: "IT・ニュース"
+  image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?q=80&w=800&auto=format&fit=crop"
+  hashtags: "#トレンド #ニュース #テック"
+  ---
+  ※カテゴリは「IT・ニュース」「ガジェット」「ゲーム」「エンタメ」の中から最適なものを選んでください。
+  ※imageには、Unsplashの高品質で内容に関連する画像のURL（実在する形式）を一つ設定してください。
+  ※hashtagsには、X(Twitter)での拡散に最適な、内容に関連するハッシュタグを3〜5個（スペース区切り）生成してください。
 6. 全体的に読み物として面白いトーンにしてください。`;
 
         console.log(`AIリクエスト送信中 (Gemini SDK)...`);
