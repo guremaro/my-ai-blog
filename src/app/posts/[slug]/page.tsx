@@ -43,7 +43,8 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
           const isThreadComment = /^\d+: 名前：/.test(line);
 
           if (line.startsWith('## ')) {
-            return <h2 key={i} className="text-2xl sm:text-4xl font-black mt-20 mb-10 text-slate-900 border-b-2 border-slate-200 pb-2">{line.replace('## ', '')}</h2>;
+            const cleanHeader = line.replace('## ', '').replace('（2ch風）', '').replace('(2ch風)', '');
+            return <h2 key={i} className="text-2xl sm:text-4xl font-black mt-20 mb-10 text-slate-900 border-b-2 border-slate-200 pb-2">{cleanHeader}</h2>;
           }
           if (line.startsWith('### ')) {
             return <h3 key={i} className="text-xl sm:text-2xl font-black mt-12 mb-6 text-slate-900 underline decoration-slate-300 decoration-4 underline-offset-8">{line.replace('### ', '')}</h3>;
@@ -55,7 +56,21 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
             const id = parts[0]?.split(': ')[1] || '';
             const name = parts[1] || '名無しさん';
             const date = parts[2] || '';
-            const body = line.split('  ').slice(3).join('  ') || line.split('\n').slice(1).join('\n');
+            const rawBody = line.split('  ').slice(3).join('  ') || line.split('\n').slice(1).join('\n');
+
+            // URLをリンク化する関数
+            const linkify = (text: string) => {
+              const urlRegex = /(https?:\/\/[^\s]+)/g;
+              const parts = text.split(urlRegex);
+              return parts.map((part, i) => {
+                if (part.match(urlRegex)) {
+                  return <a key={i} href={part} target="_blank" rel="noopener noreferrer" className="text-orange-500 hover:underline break-all">{part}</a>;
+                }
+                return part;
+              });
+            };
+
+            const body = linkify(rawBody);
 
             // IDから色を生成する簡易的な関数
             const getColorFromId = (str: string) => {
