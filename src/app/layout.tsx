@@ -1,14 +1,23 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
 import Script from "next/script";
 import PopularPosts from "@/components/PopularPosts";
+import SearchBar from "@/components/SearchBar";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "みんなの情報収集 | 役立つトレンドを分かりやすく",
-  description: "日常をちょっと便利にする最新のテックニュースやトレンド情報を、分かりやすくお届けします。",
+  title: {
+    default: "みんなの情報収集 | 役立つトレンドを分かりやすく",
+    template: "%s | みんなの情報収集"
+  },
+  description: "日常をちょっと便利にする最新のテックニュースやトレンド情報を、2ch風の反応と共に分かりやすくお届けします。",
+  openGraph: {
+    type: "website",
+    locale: "ja_JP",
+    url: "https://my-ai-blog-ten.vercel.app/",
+    siteName: "みんなの情報収集",
+  },
 };
 
 export default function RootLayout({
@@ -71,12 +80,15 @@ export default function RootLayout({
                   <span className="text-2xl font-black tracking-tighter text-slate-900 leading-none">みんなの情報収集</span>
                 </a>
               </div>
-              <nav className="hidden lg:flex gap-8 text-[15px] font-bold text-slate-900 uppercase tracking-wide">
+              <nav className="hidden lg:flex items-center gap-8 text-[15px] font-bold text-slate-900 uppercase tracking-wide">
                 <a href="/" className="hover:text-orange-600 transition-colors">ホーム</a>
                 <a href="/category/it" className="hover:text-orange-600 transition-colors">IT・ニュース</a>
                 <a href="/category/gadget" className="hover:text-orange-600 transition-colors">ガジェット</a>
                 <a href="/category/game" className="hover:text-orange-600 transition-colors">ゲーム</a>
                 <a href="/category/ent" className="hover:text-orange-600 transition-colors">エンタメ</a>
+                <div className="ml-4 pl-8 border-l border-slate-200">
+                  <SearchBar />
+                </div>
               </nav>
             </div>
           </header>

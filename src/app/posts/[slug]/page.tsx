@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import { getPostBySlug, getAllPosts } from '@/lib/posts';
 import { AdSlot } from "@/components/AdSlot";
 import CommentSection from '@/components/CommentSection';
+import RelatedPosts from '@/components/RelatedPosts';
 
 export async function generateStaticParams() {
   const posts = getAllPosts();
@@ -121,6 +122,9 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 
       {/* Social Features */}
       <CommentSection />
+
+      {/* Related Content */}
+      <RelatedPosts currentSlug={slug} category={post.category} />
 
       </div>
 
