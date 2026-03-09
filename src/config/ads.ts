@@ -19,12 +19,21 @@ export const adConfig = {
   `,
 
   // 記事の末尾に表示する広告
-  postBottom: `<div style="text-align:center; padding: 20px; background: #f9f9f9; border: 1px dashed #ccc; border-radius: 12px;">【ここに広告が表示されます】</div>`,
+  postBottom: `
+    <div style="text-align:center; padding: 15px; border: 2px solid #2db4d3; border-radius: 12px; background: #f0faff; margin-top: 2rem;">
+      <p style="margin: 0 0 10px 0; font-weight: bold; color: #1a73e8;">＼ メルカリでお得に買い物 ／</p>
+      <a href="https://px.a8.net/svt/ejp?a8mat=4AZCG1+89OR8Y+5LNQ+5YJRM" rel="nofollow" style="color: #d32f2f; text-decoration: underline; font-weight: bold; font-size: 1.1rem;">
+        メルカリの最新出品をチェック！
+      </a>
+      <img border="0" width="1" height="1" src="https://www11.a8.net/0.gif?a8mat=4AZCG1+89OR8Y+5LNQ+5YJRM" alt="">
+    </div>
+  `,
 
   // AIがアフィリエイトリンクを生成する際の「共通の指示」
   affiliateInstruction: `
-    - 以下の案件が特におすすめなので、記事の内容（IT、エンタメ、生活など）に関連付けて紹介してください。
-      リンク: https://px.a8.net/svt/ejp?a8mat=4AZCG1+893BN6+2J9U+C0B9T
-    - 掲示板のレス（2ch風）の中で「これええやん」「これ使ってるわ」というノリで紹介してください。
+    - 以下の2案件が特におすすめなので、記事の内容に関連付けて紹介してください。
+      1. 注目案件: https://px.a8.net/svt/ejp?a8mat=4AZCG1+893BN6+2J9U+C0B9T
+      2. メルカリ: https://px.a8.net/svt/ejp?a8mat=4AZCG1+89OR8Y+5LNQ+5YJRM
+    - 掲示板のレス（2ch風）の中で「メルカリで安く売ってたぞ」「これメルカリで探してみるわ」というノリでメルカリを紹介するのも効果的です。
   `
 };
