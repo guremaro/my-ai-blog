@@ -1,20 +1,18 @@
-const { GoogleGenerativeAI } = require("@google/generative-ai");
+const axios = require('axios');
 const path = require('path');
 require('dotenv').config();
 
-// adConfigを読み込む（CommonJS環境での対応）
-const adConfigPath = path.join(__dirname, '../src/config/ads.ts');
-
 async function createArticleMarkdown(newsItem) {
-    if (!process.env.GEMINI_API_KEY) {
-        console.error("GEMINI_API_KEY is not set in environment variables.");
+    const apiKey = process.env.GEMINI_API_KEY?.trim();
+    if (!apiKey) {
+        console.error("GEMINI_API_KEY is not set.");
         return null;
     }
 
-    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-    const model = genAI.getGenerativeModel({ model: "gemini-flash-latest" });
+    // 利用可能なモデルの中から安定していそうなものを選択
+    const modelName = "gemini-1.5-flash"; 
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${apiKey}`;
 
-    // 実際のアフィリエイトリンク情報をここに定義
     const affiliateInfo = `
     【おすすめ案件リスト】
     1. 注目案件: https://px.a8.net/svt/ejp?a8mat=4AZCG1+893BN6+2J9U+C0B9T
@@ -23,7 +21,7 @@ async function createArticleMarkdown(newsItem) {
     4. ガジェット系B: https://px.a8.net/svt/ejp?a8mat=4AZCG1+59XAR6+14CS+64RJ5
     `;
 
-    const prompt = `
+    const promptText = `
 以下のニュース情報を元に、読者が楽しめるブログ記事を日本語で執筆してください。
 サイト名は「みんなの情報収集」です。
 
@@ -38,7 +36,7 @@ async function createArticleMarkdown(newsItem) {
 4. 🌟【最重要】収益化指示:
    - 掲示板のレス（2ch風）の中で、記事の話題に関連するものがあれば、以下の【おすすめ案件リスト】から1つか2つ、自然なノリで紹介してください。
    - 口調は掲示板のノリ（「これ買っとけw」「これ便利だぞ」等）でOKです。
-   - リンクを貼る際は、[タイトル](URL) の形式ではなく、URLをそのまま、または文章の途中に含めてください。
+   - リンクを貼る際は、URLをそのまま、または文章の途中に含めてください。
 
 ${affiliateInfo}
 
@@ -52,19 +50,27 @@ ${affiliateInfo}
 6. 全体的に明るく、読み物として面白いトーンにしてください。
 `;
 
+    const data = {
+        contents: [{
+            parts: [{ text: promptText }]
+        }]
+    };
+
     try {
-        console.log("AIリクエスト送信中...");
-        const result = await model.generateContent(prompt);
-        const response = await result.response;
-        return response.text();
-    } catch (error) {
-        console.error("記事生成エラー:", error.message);
-        if (error.message.includes("API key not valid")) {
-            console.error("APIキーが無効です。Google AI Studioでキーが有効か、制限がかかっていないか確認してください。");
-        } else if (error.message.includes("404") || error.message.includes("not found")) {
-            console.error("モデルが見つかりません。お使いのキーで利用可能なモデルを確認してください。");
+        console.log(`AIリクエスト送信中 (${modelName})...`);
+        const response = await axios.post(url, data, {
+            headers: { 'Content-Type': 'application/json' }
+        });
+        
+        if (response.data?.candidates?.[0]?.content?.parts?.[0]?.text) {
+            return response.data.candidates[0].content.parts[0].text;
+        } else {
+            console.error("AIからの空のレスポンス:", JSON.stringify(response.data));
+            return null;
         }
-        console.error("トラブルシューティング: https://aistudio.google.com/ でAPIキーの状態を確認してください。");
+    } catch (error) {
+        const errorData = error.response ? error.response.data : error.message;
+        console.error("記事生成エラー:", JSON.stringify(errorData));
         return null;
     }
 }
