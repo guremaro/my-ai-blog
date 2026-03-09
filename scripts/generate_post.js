@@ -12,14 +12,38 @@ async function main() {
         return;
     }
 
-    // 最大30件までに制限
+    // 最大30件までに制限（自動実行時は少なめにしても良いが、重複チェックがあれば30でも可）
     const maxPosts = 30;
     const targetNewsList = newsList.slice(0, maxPosts);
     console.log(`${targetNewsList.length}件のニュースを処理します。`);
 
+    let generatedCount = 0;
+    const limitPerRun = 3; // 1回の実行で新しく生成する最大記事数
+
     for (const [index, targetNews] of targetNewsList.entries()) {
         try {
+            if (generatedCount >= limitPerRun) {
+                console.log(`\n1回あたりの生成上限(${limitPerRun}件)に達したため終了します。`);
+                break;
+            }
+
             console.log(`\n[${index + 1}/${targetNewsList.length}] 処理中: ${targetNews.title}`);
+            
+            // 重複チェック (簡易版)
+            const slug = targetNews.title
+                .toLowerCase()
+                .replace(/[^a-z0-9]/g, '-')
+                .replace(/-+/g, '-')
+                .substring(0, 50);
+            const path = require('path');
+            const fs = require('fs');
+            const filePath = path.join(__dirname, '../src/content/posts', `${slug}.md`);
+
+            if (fs.existsSync(filePath)) {
+                console.log(`既に記事が存在するためスキップします: ${slug}`);
+                continue;
+            }
+
             console.log("AI記事を生成中...");
             const markdown = await createArticleMarkdown(targetNews);
             
@@ -29,14 +53,15 @@ async function main() {
             }
 
             console.log("ファイルを保存中...");
-            const filePath = saveMarkdown(markdown);
+            const savedPath = saveMarkdown(markdown);
             
-            if (filePath) {
-                console.log(`保存完了: ${filePath}`);
+            if (savedPath) {
+                console.log(`保存完了: ${savedPath}`);
+                generatedCount++;
             }
 
             // API制限回避のためのディレイ (2秒)
-            if (index < targetNewsList.length - 1) {
+            if (index < targetNewsList.length - 1 && generatedCount < limitPerRun) {
                 console.log("次の生成まで待機中...");
                 await new Promise(resolve => setTimeout(resolve, 2000));
             }
