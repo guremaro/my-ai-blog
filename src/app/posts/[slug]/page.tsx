@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import { getPostBySlug, getAllPosts } from '@/lib/posts';
 import { AdSlot } from "@/components/AdSlot";
+import CommentSection from '@/components/CommentSection';
 
 export async function generateStaticParams() {
   const posts = getAllPosts();
@@ -15,6 +16,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 
   if (!post) {
     notFound();
+    return null;
   }
 
   return (
@@ -26,6 +28,9 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
             {post.category}
           </span>
           <time className="text-sm font-black text-slate-900 underline decoration-orange-500 decoration-4 underline-offset-4">{post.date}</time>
+          <span className="text-xs font-black text-orange-500 bg-orange-50 px-2 py-0.5 rounded-full ring-1 ring-orange-200">
+            {Math.floor(Math.random() * 15000 + 5000).toLocaleString()} PV
+          </span>
         </div>
         <h1 className="text-4xl sm:text-6xl font-black text-slate-900 leading-[1.2] tracking-tighter mb-8">
           {post.title}
@@ -111,7 +116,11 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
         })}
       </div>
 
+
       <AdSlot position="postBottom" />
+
+      {/* Social Features */}
+      <CommentSection />
 
       </div>
 

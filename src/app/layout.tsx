@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
+import PopularPosts from "@/components/PopularPosts";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -54,27 +55,11 @@ export default function RootLayout({
           </a>
         </div>
 
-        {/* Right Side Ad Space */}
+        {/* Right Side Ad Space -> Popular Posts Ranking */}
         <div className="fixed right-0 top-0 hidden xl:flex h-screen w-[calc((100vw-1280px)/2)] flex-col items-center justify-center p-4 overflow-hidden">
-          <a href="https://px.a8.net/svt/ejp?a8mat=4AZCG1+89OR8Y+5LNQ+5YJRM" target="_blank" rel="noopener noreferrer"
-             className="w-full max-w-[160px] aspect-[1/4] bg-slate-800/80 rounded-2xl border border-slate-700 flex flex-col items-center justify-between p-4 text-slate-400 hover:border-orange-500 transition-all duration-500 group">
-            <span className="uppercase tracking-[0.3em] text-[9px] font-black opacity-50">Recommended</span>
-            <div className="w-full flex flex-col gap-6">
-               <div className="relative w-full aspect-[1/1.5] rounded-xl overflow-hidden shadow-2xl">
-                 <img src="https://images.unsplash.com/photo-1542435503-956c469947f6?q=80&w=300&auto=format&fit=crop" 
-                      alt="Lifestyle" className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-700" />
-                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
-                 <div className="absolute bottom-2 left-2 right-2 text-[10px] font-black text-white leading-tight">
-                   毎日の生活を<br/>もっと豊かに
-                 </div>
-               </div>
-               <div className="text-center">
-                 <p className="text-[11px] font-black text-white mb-2 tracking-tight group-hover:text-orange-400">メルカリで今すぐ<br/>掘り出し物を探す</p>
-                 <div className="inline-block px-3 py-1 bg-white text-slate-900 text-[9px] font-black rounded-full uppercase group-hover:bg-orange-500 group-hover:text-white transition-colors">Search On Mercari</div>
-               </div>
-            </div>
-            <span className="text-[9px] font-bold opacity-30">Affiliate Offer</span>
-          </a>
+          <div className="w-full max-w-[240px]">
+            <PopularPosts />
+          </div>
         </div>
 
         <div className="relative z-10 mx-auto w-full max-w-[1280px] bg-white shadow-[0_0_50px_rgba(0,0,0,0.3)] flex-grow">
