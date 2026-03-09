@@ -31,13 +31,14 @@ export const adConfig = {
 
   // AIがアフィリエイトリンクを生成する際の「共通の指示」
   affiliateInstruction: `
-    - 以下の6案件が特におすすめなので、記事の内容に関連付けて紹介してください。
+    - 以下の7案件が特におすすめなので、記事の内容に関連付けて紹介してください。
       1. 注目案件: https://px.a8.net/svt/ejp?a8mat=4AZCG1+893BN6+2J9U+C0B9T
       2. メルカリ: https://px.a8.net/svt/ejp?a8mat=4AZCG1+89OR8Y+5LNQ+5YJRM
       3. バナー案件A: https://px.a8.net/svt/ejp?a8mat=4AZCG1+59BV5E+2UG2+C03K1
       4. バナー案件B: https://px.a8.net/svt/ejp?a8mat=4AZCG1+59XAR6+14CS+64RJ5
       5. バナー案件C (300x250): https://px.a8.net/svt/ejp?a8mat=4AZCG1+5AIQCY+5I2U+60H7L
-      6. 新着バナーD: https://px.a8.net/svt/ejp?a8mat=4AZCG1+5FVMSY+3OSK+60WN5
+      6. バナー案件D: https://px.a8.net/svt/ejp?a8mat=4AZCG1+5FVMSY+3OSK+60WN5
+      7. 大型バナー案件E (728x90): https://px.a8.net/svt/ejp?a8mat=4AZCG1+8D9CVM+ONS+TVBF5
     - 掲示板のレス（2ch風）の中で、記事の話題に一番近いものを1つか2つ、自然なノリで紹介してください。
   `
 };
