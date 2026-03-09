@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import "./globals.css";
 import Script from "next/script";
 import PopularPosts from "@/components/PopularPosts";
 import SearchBar from "@/components/SearchBar";
