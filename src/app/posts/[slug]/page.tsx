@@ -16,43 +16,66 @@ export default function PostPage({ params }: { params: { slug: string } }) {
   }
 
   return (
-    <article className="max-w-3xl mx-auto py-12 px-2 sm:px-4">
-      <header className="mb-16 text-center">
-        <div className="flex items-center justify-center gap-3 mb-8">
-          <span className="px-4 py-1.5 rounded-full bg-orange-50 text-orange-600 text-[13px] font-black uppercase tracking-widest">
+    <article className="max-w-4xl mx-auto py-12 px-4 bg-white">
+      <header className="mb-16 border-b-8 border-slate-900 pb-12">
+        <div className="flex items-center gap-4 mb-8">
+          <span className="px-4 py-1 rounded-sm bg-slate-900 text-white text-xs font-black uppercase tracking-[0.2em]">
             {post.category}
           </span>
-          <time className="text-sm font-bold text-slate-400">{post.date}</time>
+          <time className="text-sm font-black text-slate-900 underline decoration-orange-500 decoration-4 underline-offset-4">{post.date}</time>
         </div>
-        <h1 className="text-3xl sm:text-5xl font-black text-slate-900 leading-[1.3] mb-8">
+        <h1 className="text-4xl sm:text-6xl font-black text-slate-900 leading-[1.2] tracking-tighter mb-8">
           {post.title}
         </h1>
-        <p className="text-lg sm:text-xl text-slate-500 font-medium leading-relaxed max-w-2xl mx-auto">
+        <p className="text-xl text-slate-900 font-bold leading-relaxed border-l-8 border-orange-500 pl-6 py-2">
           {post.excerpt}
         </p>
       </header>
 
-      <div className="prose prose-slate prose-lg sm:prose-xl max-w-none prose-headings:font-black prose-headings:text-slate-900 prose-p:text-slate-700 prose-p:leading-[1.8] prose-a:text-orange-500 prose-a:no-underline hover:prose-a:underline prose-img:rounded-[2rem] prose-strong:text-slate-900">
+      <div className="space-y-4">
         {post.content.split('\n').map((line, i) => {
+          // 2ch風の行 (例 "1: 名前：名無しさん...") を検出
+          const isThreadComment = /^\d+: 名前：/.test(line);
+
           if (line.startsWith('## ')) {
-            return <h2 key={i} className="text-2xl sm:text-3xl font-black mt-16 mb-8 text-slate-900">{line.replace('## ', '')}</h2>;
+            return <h2 key={i} className="text-2xl sm:text-4xl font-black mt-20 mb-10 text-slate-900 border-b-2 border-slate-200 pb-2">{line.replace('## ', '')}</h2>;
           }
           if (line.startsWith('### ')) {
-            return <h3 key={i} className="text-xl sm:text-2xl font-black mt-12 mb-6 text-slate-900">{line.replace('### ', '')}</h3>;
+            return <h3 key={i} className="text-xl sm:text-2xl font-black mt-12 mb-6 text-slate-900 underline decoration-slate-300 decoration-4 underline-offset-8">{line.replace('### ', '')}</h3>;
           }
-          if (line.trim() === '') return <div key={i} className="h-4" />;
           
-          return <p key={i} className="mb-6">{line}</p>;
+          if (isThreadComment) {
+            const [header, ...bodyParts] = line.split('\n');
+            return (
+              <div key={i} className="bg-slate-50 border border-slate-200 p-6 rounded-xl hover:border-orange-400 transition-colors shadow-sm mb-6">
+                <div className="text-xs font-black text-slate-500 mb-2 font-mono flex gap-3 flex-wrap">
+                  {line.match(/^\d+:/)?.[0] && <span className="text-orange-600 underline">{" >> "}{line.match(/^\d+:/)?.[0].replace(':', '')}</span>}
+                  <span>{line.split('  ')[0].replace(/^\d+: /, '')}</span>
+                  <span>{line.split('  ')[1]}</span>
+                  <span>{line.split('  ')[2]}</span>
+                </div>
+                <div className="text-slate-900 text-lg font-bold leading-relaxed whitespace-pre-wrap">
+                  {line.split('\n').slice(1).join('\n') || line.split('  ').slice(3).join('  ')}
+                </div>
+              </div>
+            );
+          }
+
+          if (line.trim() === '') return null;
+          
+          return <p key={i} className="text-slate-900 text-lg font-bold leading-[1.8] mb-8">{line}</p>;
         })}
       </div>
 
-      <footer className="mt-24 pt-12 border-t border-slate-100">
-        <div className="bg-slate-50 p-10 rounded-[2.5rem] flex flex-col items-center text-center">
-          <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-sm mb-6 text-xl">💡</div>
-          <h4 className="text-base font-black text-slate-800 mb-3">この記事について</h4>
-          <p className="text-slate-500 text-sm leading-relaxed max-w-md">
-            「みんなの情報収集」では、最新のトレンドを効率的に集約してお届けしています。
-            日々の生活や仕事のヒントになれば幸いです。
+      <footer className="mt-32 pt-16 border-t-8 border-slate-100">
+        <div className="bg-slate-900 p-12 rounded-[3rem] text-white">
+          <h4 className="text-xl font-black mb-6 flex items-center gap-3">
+            <span className="w-8 h-8 rounded-full bg-orange-500 flex items-center justify-center text-sm italic">i</span>
+            みんなの反応まとめ
+          </h4>
+          <p className="text-slate-400 text-sm font-bold leading-relaxed max-w-2xl">
+            このページはインターネット上の様々な意見を参考に、独自の視点でまとめたものです。
+            最新のトレンドを皆さんと一緒に追いかけていければ幸いです。
           </p>
         </div>
       </footer>

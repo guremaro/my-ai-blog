@@ -1,11 +1,12 @@
 const RSSParser = require('rss-parser');
 const parser = new RSSParser();
 
-// 取得対象のテック系RSSフィード
+// 取得対象のテック・エンタメ系RSSフィード
 const FEEDS = [
     'https://rss.itmedia.co.jp/rss/2.0/aiplus.xml', // ITmedia AI+
     'https://www.gizmodo.jp/index.xml',
-    'https://wired.jp/rss/index.xml',
+    'https://www.famitsu.com/rss/all.xml', // ファミ通 (ゲーム)
+    'https://www.oricon.co.jp/rss/news/', // オリコン (エンタメ)
 ];
 
 async function fetchLatestNews() {
